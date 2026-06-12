@@ -1,113 +1,267 @@
 # Cricket Player Management System
 
-## Production-Ready Cricket Management Platform
+> A production-ready cricket player management system with secure authentication, role-based access control, and comprehensive player profiling capabilities.
 
-A comprehensive, secure, and scalable cricket player management system built with PHP 8+, MySQL 8+, and Bootstrap 5.
+## 🎯 Features
 
-### Features
+### Authentication & Security
+- ✅ Secure login with email/username
+- ✅ Email verification system
+- ✅ Password reset functionality
+- ✅ Account lockout protection (5 failed attempts)
+- ✅ CSRF token protection
+- ✅ XSS prevention
+- ✅ SQL injection protection
+- ✅ Activity logging & audit trail
 
-- **Role-Based Access Control**: Admin and Player roles with strict permission enforcement
-- **Authentication System**: Secure login with email verification and password reset
-- **Player Management**: Complete player profile with 80+ questionnaire fields
-- **Admin Dashboard**: Analytics, charts, and player statistics
-- **Email System**: PHPMailer integration with multiple SMTP providers
-- **Security**: PDO prepared statements, CSRF protection, XSS prevention, rate limiting
-- **Reports**: PDF, Excel, and CSV export capabilities
-- **Responsive Design**: Mobile-friendly Bootstrap 5 interface
+### Role-Based Access Control
+- ✅ Admin role with full management capabilities
+- ✅ Player role with profile management
+- ✅ Middleware-protected routes
+- ✅ Permission-based access
 
-### System Requirements
+### Player Management
+- ✅ 88-field comprehensive questionnaire
+- ✅ Profile completion tracking
+- ✅ Statistics management
+- ✅ Document uploads
+- ✅ Email verification status
 
-- PHP 8.0 or higher
-- MySQL 8.0 or higher
-- Composer (for dependencies)
-- SMTP Server access (Gmail, Outlook, or Custom)
+### Admin Dashboard
+- ✅ Player statistics and analytics
+- ✅ Recent login tracking
+- ✅ New player registrations
+- ✅ User search and filtering
+- ✅ Account management
+- ✅ System analytics with charts
 
-### Installation
+### Email System
+- ✅ PHPMailer integration
+- ✅ Email verification
+- ✅ Password reset emails
+- ✅ Welcome emails
+- ✅ HTML email templates
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/cricdesign45-sudo/adsf.git
-   cd adsf
-   ```
+## 🔧 Technology Stack
 
-2. **Install dependencies**
-   ```bash
-   composer install
-   ```
+- **Backend**: PHP 8.0+ with PSR-4 autoloading
+- **Database**: MySQL 8.0+ with InnoDB
+- **Frontend**: Bootstrap 5 + Font Awesome 6
+- **Email**: PHPMailer
+- **Architecture**: MVC-inspired with models, services, middleware
 
-3. **Configure the database**
-   - Copy `config/database.php.example` to `config/database.php`
-   - Update database credentials
+## 📦 Installation
 
-4. **Configure email settings**
-   - Copy `config/email.php.example` to `config/email.php`
-   - Update SMTP settings
+### Quick Start
 
-5. **Import database schema**
-   ```bash
-   mysql -u root -p cricket_db < database/schema.sql
-   ```
+```bash
+# 1. Clone repository
+git clone https://github.com/cricdesign45-sudo/adsf.git
+cd adsf
 
-6. **Run seeder (optional)**
-   ```bash
-   php database/seeder.php
-   ```
+# 2. Install dependencies
+composer install
 
-7. **Set file permissions**
-   ```bash
-   chmod 755 uploads/
-   chmod 755 logs/
-   ```
+# 3. Setup database
+mysql -u root -p cricket_db < database/schema.sql
 
-### Default Admin Account
+# 4. Configure environment
+cp config/database.php.example config/database.php
+cp .env.example .env
 
-- **Username**: admin
-- **Email**: admin@cricket.local
-- **Password**: Admin@123456
+# 5. Run seeder for admin user
+php database/seeder.php
 
-### Directory Structure
+# 6. Start server
+php -S localhost:8000 -t public/
+```
+
+### Full Installation Guide
+
+See [INSTALLATION.md](INSTALLATION.md) for detailed setup instructions including:
+- Database configuration
+- Email service setup
+- File permissions
+- Production deployment
+- Troubleshooting
+
+## 🔐 Security Features
+
+- PDO Prepared Statements (SQL Injection Prevention)
+- CSRF Token Protection on all forms
+- XSS Prevention with output escaping
+- Password hashing with bcrypt (cost 12)
+- Session regeneration after login
+- Secure cookies (HTTPOnly, Secure, SameSite=Strict)
+- Rate limiting & account lockout
+- Activity logging & audit trail
+- File upload validation
+- Input validation & sanitization
+
+## 📂 Project Structure
 
 ```
 adsf/
-├── config/           # Configuration files
-├── app/              # Application logic
-├── public/           # Public assets
-├── database/         # Database schema and seeders
-├── uploads/          # User uploads
-├── logs/             # Application logs
-└── vendor/           # Composer dependencies
+├── config/              # Configuration files
+├── app/
+│   ├── Core/           # Database, Auth, Session, Logger
+│   ├── Models/         # User, PlayerProfile, etc.
+│   ├── Services/       # EmailService
+│   ├── Middleware/     # Auth, Validation
+│   └── Helpers/        # Utility functions
+├── public/             # Public pages (HTML/PHP)
+├── database/           # Schema and seeders
+├── uploads/            # User uploads
+├── logs/               # Application logs
+├── README.md           # This file
+├── INSTALLATION.md     # Installation guide
+└── composer.json       # Dependencies
 ```
 
-### Security Features
+## 🔑 Default Credentials
 
-✓ PDO Prepared Statements
-✓ CSRF Token Protection
-✓ XSS Prevention
-✓ SQL Injection Protection
-✓ Password Hashing (bcrypt)
-✓ Session Regeneration
-✓ Rate Limiting
-✓ Account Lockout
-✓ Audit Logging
-✓ File Upload Validation
+| Field | Value |
+|-------|-------|
+| Username | admin |
+| Email | admin@cricket.local |
+| Password | Admin@123456 |
 
-### API Endpoints
+⚠️ **Change password immediately after first login!**
 
-All endpoints are secured with role-based middleware.
+## 🚀 Usage
 
-### Email Templates
+### Admin Features
+- Dashboard: `/admin/dashboard.php`
+- Player Management: `/admin/players.php`
+- Create Player: `/admin/create-player.php`
+- Reports: `/admin/reports.php`
+- Settings: `/admin/settings.php`
 
-- Welcome Email
-- Email Verification
-- Password Reset
-- Password Changed
-- Account Activated
-- Account Suspended
+### Player Features
+- Dashboard: `/player/dashboard.php`
+- Edit Profile: `/player/profile.php`
+- Statistics: `/player/statistics.php`
+- Change Password: `/player/change-password.php`
 
-### License
+### Authentication
+- Login: `/login.php`
+- Logout: `/logout.php`
+- Forgot Password: `/forgot-password.php`
+- Email Verification: `/verify-email.php`
 
-Propriety
+## 📊 Database Schema
 
-### Support
+### Key Tables
+- **users** - User accounts with roles
+- **player_profiles** - 88-field player questionnaire
+- **email_verifications** - Email verification tokens
+- **password_resets** - Password reset tokens
+- **login_attempts** - Rate limiting & security
+- **activity_logs** - Audit trail
+- **file_uploads** - Document management
 
-For issues and feature requests, please open an issue in the repository.
+## 🔗 API Endpoints
+
+All endpoints are secured with authentication middleware.
+
+## 📝 Configuration
+
+### Database (`config/database.php`)
+```php
+return [
+    'host' => 'localhost',
+    'port' => 3306,
+    'database' => 'cricket_db',
+    'username' => 'root',
+    'password' => '',
+];
+```
+
+### Email (`config/email.php`)
+```php
+return [
+    'driver' => 'smtp',
+    'host' => 'smtp.gmail.com',
+    'port' => 587,
+    'username' => 'your-email@gmail.com',
+    'password' => 'app-password',
+];
+```
+
+## 🛠️ Development
+
+### Code Standards
+- PSR-4 Autoloading
+- Namespaced classes
+- Documented methods
+- Security-first approach
+
+### Testing
+```bash
+# Run database seeder
+php database/seeder.php
+
+# Test email configuration
+# Check logs/error-*.log for issues
+```
+
+## 📚 Documentation
+
+- [Installation Guide](INSTALLATION.md)
+- [Database Schema](database/schema.sql)
+- Security Implementation
+- API Documentation (Coming soon)
+
+## 🐛 Bug Reports
+
+Report bugs via GitHub Issues:
+https://github.com/cricdesign45-sudo/adsf/issues
+
+## 📄 License
+
+Proprietary - All rights reserved
+
+## 👨‍💻 Author
+
+**Cricket Management System Team**
+- Repository: https://github.com/cricdesign45-sudo/adsf
+- Contact: admin@cricket.local
+
+## 🎉 Version
+
+**Current Version**: 1.0.0  
+**Last Updated**: June 12, 2024  
+**Status**: ✅ Production Ready
+
+---
+
+## Production Checklist
+
+Before deploying to production:
+
+- [ ] Change admin password
+- [ ] Update BASE_URL to actual domain
+- [ ] Configure HTTPS/SSL certificate
+- [ ] Set up proper email provider (Gmail/Outlook)
+- [ ] Enable database backups
+- [ ] Set up log monitoring
+- [ ] Update .env with production values
+- [ ] Review security settings
+- [ ] Test all authentication flows
+- [ ] Configure file permissions (644 files, 755 dirs)
+- [ ] Disable debug mode
+- [ ] Set up error monitoring
+
+---
+
+## Quick Links
+
+- **Login Page**: http://localhost:8000/login.php
+- **Admin Dashboard**: http://localhost:8000/admin/dashboard.php
+- **Player Dashboard**: http://localhost:8000/player/dashboard.php
+- **Installation Guide**: [INSTALLATION.md](INSTALLATION.md)
+- **GitHub Repository**: https://github.com/cricdesign45-sudo/adsf
+
+---
+
+**⭐ If this project helps you, please consider giving it a star on GitHub!**
