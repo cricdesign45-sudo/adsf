@@ -1,0 +1,44 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+vendor/
+composer.lock
+
+# Configuration
+config/database.php
+config/email.php
+config/app.php
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Logs
+logs/*
+!logs/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.cache
+.session
+
+# Database
+*.sql.bak
+
+# Frontend
+node_modules/
+npm-debug.log
+yarn-error.log
